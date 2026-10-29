@@ -12,11 +12,18 @@ import lombok.ToString;
 public class Tag {
     @Id
     private String tagId;
-    private String garmentId;
     private String tagType;
     private String tagValue;
 
-    @ManyToOne
-    @JoinColumn(name = "garment_id")
-    private Garment garment;
+    public void create(String type, String value) {
+        this.tagType = type;
+        this.tagValue = value;
+    }
+
+    public void update(String newValue) {
+        this.tagValue = newValue;
+    }
+
+    public void delete() {
+    }
 }

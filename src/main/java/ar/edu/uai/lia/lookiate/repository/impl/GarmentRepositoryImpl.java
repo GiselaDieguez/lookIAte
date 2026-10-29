@@ -6,7 +6,6 @@ import ar.edu.uai.lia.lookiate.repository.jpa.GarmentJpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -44,12 +43,12 @@ public class GarmentRepositoryImpl implements GarmentRepository {
 
     @Override
     public List<Garment> findByTag(String tag) {
-        return List.of();
+        return repository.findByTagsTagValue(tag);
     }
 
     @Override
-    public Map<String, Long> countByType() {
-        return Map.of();
+    public List<Garment> findByType(String type) {
+        return repository.findByTagsTagType(type);
     }
 
 }
