@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface WardrobeService {
     Wardrobe createWardrobe(Wardrobe wardrobe);
-    List<Garment> listGarments(Long wardrobeId);
-    void addGarment(Long wardrobeId, Long garmentId);
-    void removeGarment(Long wardrobeId, Long garmentId);
-    Wardrobe getDetails(Long wardrobeId);
+    List<Garment> listGarments(String wardrobeId);
+    void addGarment(String wardrobeId, String garmentId);
+    void removeGarment(String wardrobeId, String garmentId);
+    Wardrobe getDetails(String wardrobeId);
 }
