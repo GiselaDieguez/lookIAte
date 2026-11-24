@@ -38,7 +38,7 @@ public class GarmentRepositoryImpl implements GarmentRepository {
 
     @Override
     public List<Garment> findByWardrobe(String wardrobeId) {
-        return repository.findByWardrobeId(wardrobeId);
+        return repository.findByWardrobe_WardrobeId(wardrobeId);
     }
 
     @Override

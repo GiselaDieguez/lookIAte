@@ -6,6 +6,7 @@ import ar.edu.uai.lia.lookiate.repository.GarmentRepository;
 import ar.edu.uai.lia.lookiate.repository.WardrobeRepository;
 import ar.edu.uai.lia.lookiate.service.WardrobeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,7 +22,11 @@ public class WardrobeServiceImpl implements WardrobeService {
     }
 
     @Override
+    @Transactional
     public Wardrobe createWardrobe(Wardrobe wardrobe) {
+        if (wardrobe.getWardrobeId() == null) {
+            wardrobe.setWardrobeId(java.util.UUID.randomUUID().toString());
+        }
         return wardrobeRepository.save(wardrobe);
     }
 
@@ -31,21 +36,25 @@ public class WardrobeServiceImpl implements WardrobeService {
     }
 
     @Override
+    @Transactional
     public void addGarment(String wardrobeId, String garmentId) {
         Wardrobe wardrobe = getWardrobeOrThrow(wardrobeId);
         Garment garment = getGarmentOrThrow(garmentId);
         wardrobe.addGarment(garment);
         garment.setWardrobe(wardrobe);
         wardrobeRepository.save(wardrobe);
+        garmentRepository.save(garment);
     }
 
     @Override
+    @Transactional
     public void removeGarment(String wardrobeId, String garmentId) {
         Wardrobe wardrobe = getWardrobeOrThrow(wardrobeId);
         Garment garment = getGarmentOrThrow(garmentId);
         wardrobe.removeGarment(garmentId);
         garment.setWardrobe(null);
         wardrobeRepository.save(wardrobe);
+        garmentRepository.save(garment);
     }
 
     @Override

@@ -35,9 +35,4 @@ public class UserRepositoryImpl implements UserRepository {
     public void delete(String id) {
         repository.deleteById(id);
     }
-
-    @Override
-    public User findByEmail(String email) {
-        return repository.findByEmail(email);
-    }
 }

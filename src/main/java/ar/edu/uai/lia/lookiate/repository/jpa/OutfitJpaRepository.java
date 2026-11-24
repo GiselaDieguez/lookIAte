@@ -10,4 +10,5 @@ public interface OutfitJpaRepository extends JpaRepository<Outfit, String> {
     List<Outfit> findByUserId(String userId);
     List<Outfit> findByOccasion(String occasion);
     List<Outfit> findByVisibility(Boolean visibility);
+    List<Outfit> findByGarments_GarmentId(String garmentId);
 }

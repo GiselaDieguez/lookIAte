@@ -9,5 +9,6 @@ public interface OutfitRepository extends Repository<Outfit, String> {
     List<Outfit> findByUser(String userId);
     List<Outfit> findByOccasion(String occasion);
     List<Outfit> findByVisibility(Boolean visibility);
+    List<Outfit> findByGarment(String garmentId);
     void markFavorite(String id);
 }

@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Docs locales (fuera del repo) ###
+*.png
+PLAN_PENDIENTE.txt

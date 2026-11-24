@@ -57,6 +57,11 @@ public class OutfitRepositoryImpl implements OutfitRepository {
     }
 
     @Override
+    public List<Outfit> findByGarment(String garmentId) {
+        return repository.findByGarments_GarmentId(garmentId);
+    }
+
+    @Override
     public void markFavorite(String id) {
         repository.findById(id).ifPresent(outfit -> {
             outfit.markAsFavorite();

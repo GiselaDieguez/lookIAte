@@ -12,6 +12,7 @@ import ar.edu.uai.lia.lookiate.repository.OutfitRepository;
 import ar.edu.uai.lia.lookiate.repository.UserRepository;
 import ar.edu.uai.lia.lookiate.service.OutfitService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -52,8 +53,12 @@ public class OutfitServiceImpl implements OutfitService {
     }
 
     @Override
+    @Transactional
     public void deleteOutfit(String outfitId) {
         getOutfitOrThrow(outfitId);
+        for (Like like : likeRepository.findByOutfitId(outfitId)) {
+            likeRepository.delete(like.getLikeId());
+        }
         outfitRepository.delete(outfitId);
     }
 
@@ -85,6 +90,7 @@ public class OutfitServiceImpl implements OutfitService {
     }
 
     @Override
+    @Transactional
     public void likeOutfit(String userId, String outfitId) {
         Outfit outfit = getOutfitOrThrow(outfitId);
         if (likeRepository.findByUserIdAndOutfitId(userId, outfitId) != null) {

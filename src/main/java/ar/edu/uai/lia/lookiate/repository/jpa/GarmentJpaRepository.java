@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface GarmentJpaRepository extends JpaRepository<Garment, String> {
-    List<Garment> findByWardrobeId(String wardrobeId);
+    List<Garment> findByWardrobe_WardrobeId(String wardrobeId);
     List<Garment> findByTagsTagValue(String tagValue);
     List<Garment> findByTagsTagType(String tagType);
 }

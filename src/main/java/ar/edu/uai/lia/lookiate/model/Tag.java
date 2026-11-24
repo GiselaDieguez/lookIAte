@@ -15,6 +15,11 @@ public class Tag {
     private String tagType;
     private String tagValue;
 
+    @ManyToOne
+    @JoinColumn(name = "garment_id")
+    @ToString.Exclude
+    private Garment garment;
+
     public void create(String type, String value) {
         this.tagType = type;
         this.tagValue = value;

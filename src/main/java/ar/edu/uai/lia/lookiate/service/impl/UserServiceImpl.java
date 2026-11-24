@@ -6,6 +6,7 @@ import ar.edu.uai.lia.lookiate.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User registerUser(User user) {
+        if (user.getUserId() == null) {
+            user.setUserId(UUID.randomUUID().toString());
+        }
         user.setCreatedAt(new Date());
         user.setIsActive(true);
         return userRepository.save(user);
